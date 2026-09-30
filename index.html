@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nursing Quiz ❤️🩺</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  background: linear-gradient(135deg, #fff5f8, #eef4ff 55%, #f7f9fc);
+  color: #172033;
+  overflow-x: hidden;
+}
+
+/* Floating Hearts */
+.hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  color: #f43f5e;
+  font-size: 28px;
+  opacity: .12;
+  letter-spacing: 45px;
+  animation: floatHearts 8s linear infinite;
+}
+
+@keyframes floatHearts {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(-120vh) rotate(12deg);
+  }
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 25px 15px 50px;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #1769e0, #4f46e5);
+  color: white;
+  border-radius: 24px;
+  padding: 30px 25px;
+  box-shadow: 0 12px 30px #1d4ed830;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0 0 10px;
+  font-size: 30px;
+}
+
+.header p {
+  margin: 0 0 9px;
+  opacity: .95;
+  font-size: 17px;
+}
+
+.subtitle {
+  font-size: 13px;
+  opacity: .82;
+}
+
+/* Student Name */
+.info {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 5px 20px #17203312;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 13px 15px;
+  margin-top: 8px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: #1769e0;
+}
+
+/* Sections */
+.section-title {
+  margin: 25px 0 12px;
+  padding: 13px 17px;
+  border-radius: 14px;
+  background: #e8f0ff;
+  color: #1555b8;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* Questions */
+.question {
+  background: white;
+  border-radius: 17px;
+  padding: 20px;
+  margin: 12px 0;
+  box-shadow: 0 5px 18px #17203310;
+  border: 2px solid transparent;
+}
+
+.question h3 {
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+
+.option {
+  display: block;
+  padding: 12px 14px;
+  margin: 8px 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 11px;
+  cursor: pointer;
+  transition: .2s;
+  background: #fafafa;
+}
+
+.option:hover {
+  background: #f0f6ff;
+  border-color: #9bbcf5;
+}
+
+.option input {
+  margin-left: 9px;
+}
+
+/* Answer Colors */
+.correct {
+  background: #dcfce7 !important;
+  border-color: #22c55e !important;
+}
+
+.wrong {
+  background: #fee2e2 !important;
+  border-color: #ef4444 !important;
+}
+
+.unanswered {
+  border-color: #f59e0b !important;
+}
+
+/* Submit */
+#submit {
+  width: 100%;
+  border: 0;
+  border-radius: 16px;
+  padding: 17px;
+  font-size: 19px;
+  font-weight: 800;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg, #16a34a, #059669);
+  box-shadow: 0 10px 25px #05966935;
+  margin-top: 25px;
+}
+
+#submit:hover {
+  transform: translateY(-1px);
+}
+
+/* Result */
+#result {
+  display: none;
+  background: white;
+  border-radius: 22px;
+  padding: 25px;
+  margin-top: 22px;
+  text-align: center;
+  box-shadow: 0 8px 25px #17203318;
+}
+
+.score {
+  font-size: 45px;
+  font-weight: 900;
+  color: #1769e0;
+  margin: 10px;
+}
+
+.percent {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.message {
+  margin: 12px 0;
+  font-size: 18px;
+}
+
+/* Review */
+.review {
+  text-align: right;
+  margin-top: 22px;
+}
+
+.review div {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 7px 0;
+}
+
+.good {
+  background: #ecfdf5;
+}
+
+.bad {
+  background: #fff1f2;
+}
+
+/* Reset */
+.reset {
+  border: 0;
+  background: #1769e0;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 11px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Love Note */
+.love-note {
+  margin-top: 22px;
+  background: linear-gradient(135deg, #fff1f2, #fff);
+  border: 1px solid #fecdd3;
+  border-radius: 18px;
+  padding: 18px;
+  text-align: center;
+  color: #be123c;
+  line-height: 1.8;
+  box-shadow: 0 6px 20px #be123c12;
+}
+
+.footer {
+  text-align: center;
+  color: #64748b;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .question {
+    padding: 16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="hearts">
+    ♡ ♥ ♡ ♥ ♡ ♥ ♡ ♥
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+
+    <h1>
+      🩺❤️ Nursing Quiz for My Favorite Nurse
+    </h1>
+
+    <p>
+      اختبار صغير لأجمل ممرضة… وريني شطارتك يا حبيبتي ❤️
+    </p>
+
+    <div class="subtitle">
+      Personal Information • Medical & Surgical History •
+      Family History • Obstetrical History
+    </div>
+
+  </div>
+
+
+  <!-- Student -->
+  <div class="info">
+
+    <label>
+      <b>اسم الطالبة / المريضة:</b>
+    </label>
+
+    <input
+      id="studentName"
+      type="text"
+      placeholder="اكتبي اسمك هنا ❤️"
+    >
+
+  </div>
+
+
+  <!-- Quiz -->
+  <form id="quiz"></form>
+
+
+  <!-- Submit -->
+  <button id="submit" type="button">
+    ✅ تأكدي من النتيجة
+  </button>
+
+
+  <!-- Result -->
+  <div id="result">
+
+    <h2>
+      🎉 نتيجة الاختبار ❤️
+    </h2>
+
+    <div id="studentResult"></div>
+
+    <div class="score" id="score"></div>
+
+    <div class="percent" id="percent"></div>
+
+    <div class="message" id="message"></div>
+
+    <div class="review" id="review"></div>
+
+    <button
+      class="reset"
+      onclick="location.reload()"
+    >
+      🔄 إعادة الاختبار
+    </button>
+
+  </div>
+
+
+  <!-- Love Message -->
+  <div class="love-note">
+
+    💌 من الشخص اللي مؤمن بيكي وبيحبك…<br>
+
+    <b>
+      وواثق إنك هتبقي ممرضة شاطرة جدًا ❤️🩺
+    </b>
+
+  </div>
+
+
+  <div class="footer">
+    Made with ❤️ especially for my favorite nurse
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   QUESTIONS
+========================= */
+
+const sections = [
+
+{
+  title: "1️⃣ Personal Information",
+
+  questions: [
+
+    [
+      "أي مما يلي ليس من Personal information؟",
+
+      [
+        "Source of income",
+        "Duration of marriage",
+        "Tetanus immunization",
+        "Housing condition"
+      ],
+
+      2
+    ],
+
+    [
+      "سؤال المريضة عن «مدة الزواج» اسمه:",
+
+      [
+        "Duration of marriage",
+        "Level of education",
+        "Source of income",
+        "Address"
+      ],
+
+      0
+    ]
+
+  ]
+},
+
+{
+  title: "2️⃣ Medical and Surgical History",
+
+  questions: [
+
+    [
+      "«نقل دم سابق» بالإنجليزي:",
+
+      [
+        "Blood pressure",
+        "Previous blood transfusion",
+        "Blood group",
+        "Blood loss"
+      ],
+
+      1
+    ],
+
+    [
+      "Tetanus immunization معناها:",
+
+      [
+        "حساسية",
+        "تطعيم التيتانوس",
+        "عملية جراحية",
+        "أمراض مزمنة"
+      ],
+
+      1
+    ],
+
+    [
+      "أي مما يلي من الـ Chronic illnesses؟",
+
+      [
+        "Diabetes mellitus",
+        "Mastitis",
+        "Abortion",
+        "Convulsion"
+      ],
+
+      0
+    ],
+
+    [
+      "سؤال المريضة عن عملية في الحوض هو:",
+
+      [
+        "Pelvic injury",
+        "Pelvic surgery",
+        "Uterine surgery",
+        "STD"
+      ],
+
+      1
+    ],
+
+    [
+      "STD معناها:",
+
+      [
+        "Sexually transmitted disease",
+        "Surgery of the delivery",
+        "Skin tetanus disease",
+        "Stillborn delivery"
+      ],
+
+      0
+    ]
+
+  ]
+},
+
+{
+  title: "3️⃣ Family History",
+
+  questions: [
+
+    [
+      "Multiple pregnancy معناها:",
+
+      [
+        "حمل سابق",
+        "حمل متعدد / توأم",
+        "إجهاض",
+        "ولادة قيصرية"
+      ],
+
+      1
+    ],
+
+    [
+      "Congenital anomalies معناها:",
+
+      [
+        "أمراض مكتسبة",
+        "حساسية",
+        "عيوب خلقية",
+        "أمراض القلب"
+      ],
+
+      2
+    ],
+
+    [
+      "أي مما يلي ليس ضمن Family History؟",
+
+      [
+        "Asthma",
+        "Hypertension",
+        "Cracked nipple",
+        "Cardiac disease"
+      ],
+
+      2
+    ],
+
+    [
+      "Hypertension معناها:",
+
+      [
+        "السكر",
+        "ارتفاع ضغط الدم",
+        "الربو",
+        "الحساسية"
+      ],
+
+      1
+    ]
+
+  ]
+},
+
+{
+  title: "4️⃣ Obstetrical History",
+
+  questions: [
+
+    [
+      "Number of pregnancies معناها:",
+
+      [
+        "عدد الأطفال",
+        "عدد مرات الحمل",
+        "عدد الإجهاضات",
+        "عدد الولادات القيصرية"
+      ],
+
+      1
+    ],
+
+    [
+      "Outcome في الحمل السابق معناها:",
+
+      [
+        "نتيجة الحمل",
+        "المضاعفات",
+        "التشنجات",
+        "الإجهاض"
+      ],
+
+      0
+    ],
+
+    [
+      "Convulsion معناها:",
+
+      [
+        "نزيف",
+        "تشنجات",
+        "التهاب",
+        "حساسية"
+      ],
+
+      1
+    ],
+
+    [
+      "سؤال «حي أم مولود ميت» هو:",
+
+      [
+        "Sex",
+        "Live or stillborn",
+        "Outcome",
+        "Complications"
+      ],
+
+      1
+    ],
+
+    [
+      "Cesarean section معناها:",
+
+      [
+        "جراحة بالرحم",
+        "ولادة طبيعية",
+        "ولادة قيصرية",
+        "إجهاض"
+      ],
+
+      2
+    ],
+
+    [
+      "Uterine surgery معناها:",
+
+      [
+        "عملية في الحوض",
+        "جراحة بالرحم",
+        "نزيف",
+        "ولادة سابقة"
+      ],
+
+      1
+    ]
+
+  ]
+},
+
+{
+  title: "5️⃣ Previous Postpartum",
+
+  questions: [
+
+    [
+      "التهاب الثدي بعد الولادة:",
+
+      [
+        "Hemorrhage",
+        "Mastitis",
+        "Cracked nipple",
+        "Inverted nipple"
+      ],
+
+      1
+    ],
+
+    [
+      "تشقق الحلمة:",
+
+      [
+        "Inverted nipple",
+        "Mastitis",
+        "Cracked nipple",
+        "Hemorrhage"
+      ],
+
+      2
+    ],
+
+    [
+      "الحلمة المقلوبة:",
+
+      [
+        "Cracked nipple",
+        "Inverted nipple",
+        "Mastitis",
+        "Hemorrhage"
+      ],
+
+      1
+    ],
+
+    [
+      "Hemorrhage معناها:",
+
+      [
+        "التهاب",
+        "نزيف",
+        "تشنج",
+        "إجهاض"
+      ],
+
+      1
+    ]
+
+  ]
+}];
+
+
+/* =========================
+   CREATE QUESTIONS
+========================= */
+
+let qIndex = 0;
+
+const answers = [];
+
+const quiz = document.getElementById("quiz");
+
+
+sections.forEach(section => {
+
+  const title = document.createElement("div");
+
+  title.className = "section-title";
+
+  title.textContent = section.title;
+
+  quiz.appendChild(title);
+
+
+  section.questions.forEach(q => {
+
+    const box = document.createElement("div");
+
+    box.className = "question";
+
+    box.dataset.index = qIndex;
+
+
+    const h = document.createElement("h3");
+
+    h.textContent =
+      (qIndex + 1) + ". " + q[0];
+
+    box.appendChild(h);
+
+
+    q[1].forEach((option, i) => {
+
+      const label =
+        document.createElement("label");
+
+      label.className = "option";
+
+
+      label.innerHTML = `
+        <input
+          type="radio"
+          name="q${qIndex}"
+          value="${i}"
+        >
+
+        ${String.fromCharCode(97 + i)})
+        ${option}
+      `;
+
+
+      box.appendChild(label);
+
+    });
+
+
+    quiz.appendChild(box);
+
+    answers.push(q[2]);
+
+    qIndex++;
+
+  });
+
+});
+
+
+/* =========================
+   CHECK RESULT
+========================= */
+
+document
+  .getElementById("submit")
+  .addEventListener("click", () => {
+
+    const name =
+      document
+        .getElementById("studentName")
+        .value
+        .trim() || "الطالبة";
+
+
+    let score = 0;
+
+    let unanswered = 0;
+
+    const review = [];
+
+
+    for (
+      let i = 0;
+      i < answers.length;
+      i++
+    ) {
+
+      const box =
+        document.querySelector(
+          `[data-index="${i}"]`
+        );
+
+
+      const selected =
+        document.querySelector(
+          `input[name="q${i}"]:checked`
+        );
+
+
+      const labels =
+        box.querySelectorAll(".option");
+
+
+      labels.forEach((label, j) => {
+
+        label.classList.remove(
+          "correct",
+          "wrong"
+        );
+
+
+        if (j === answers[i]) {
+
+          label.classList.add(
+            "correct"
+          );
+
+        }
+
+      });
+
+
+      if (!selected) {
+
+        unanswered++;
+
+        box.classList.add(
+          "unanswered"
+        );
+
+
+        review.push(`
+          <div class="bad">
+            <b>سؤال ${i + 1}:</b>
+            لم تتم الإجابة عليه.
+          </div>
+        `);
+
+      }
+
+
+      else if (
+        Number(selected.value)
+        === answers[i]
+      ) {
+
+        score++;
+
+
+        review.push(`
+          <div class="good">
+            ✅ <b>سؤال ${i + 1}:</b>
+            إجابة صحيحة
+          </div>
+        `);
+
+      }
+
+
+      else {
+
+        labels[
+          Number(selected.value)
+        ].classList.add("wrong");
+
+
+        review.push(`
+          <div class="bad">
+            ❌ <b>سؤال ${i + 1}:</b>
+            إجابة خاطئة —
+            تم تمييز الإجابة الصحيحة بالأخضر.
+          </div>
+        `);
+
+      }
+
+    }
+
+
+    const total = answers.length;
+
+    const percent =
+      Math.round(
+        score / total * 100
+      );
+
+
+    /* Student Name */
+
+    document
+      .getElementById("studentResult")
+      .innerHTML = `
+        <h3>
+          الطالبة:
+          ${escapeHtml(name)}
+          ❤️
+        </h3>
+      `;
+
+
+    /* Score */
+
+    document
+      .getElementById("score")
+      .textContent =
+        `${score} / ${total}`;
+
+
+    /* Percentage */
+
+    document
+      .getElementById("percent")
+      .textContent =
+        `النسبة: ${percent}%`;
+
+
+    /* Love Message */
+
+    document
+      .getElementById("message")
+      .textContent =
+
+      percent === 100
+
+      ?
+
+      "100/100 ❤️🩺 كنت عارف إنك هتجيبي الدرجة كاملة… بس برضه قلبي شايفك دايمًا 100/100."
+
+      :
+
+      percent >= 85
+
+      ?
+
+      "ممتاز جدًا 🌟❤️ شاطرة يا حبيبتي، فخور بيكي جدًا!"
+
+      :
+
+      percent >= 70
+
+      ?
+
+      "جيد جدًا 👏❤️ كمّلي، وأنا واثق إنك هتبقي ممرضة مميزة."
+
+      :
+
+      percent >= 50
+
+      ?
+
+      "جيد 💕 الغلط في الامتحان عادي… المهم تكملي وتتعلمي."
+
+      :
+
+      "ولا يهمك يا حبيبتي ❤️ نراجعهم سوا ونجيب الدرجة اللي تليق بيكي 🩺";
+
+
+    /* Review */
+
+    document
+      .getElementById("review")
+      .innerHTML =
+
+      `<h3>مراجعة الإجابات</h3>`
+
+      +
+
+      review.join("")
+
+      +
+
+      (
+        unanswered
+
+        ?
+
+        `<p>
+          <b>
+            عدد الأسئلة غير المجاب عنها:
+            ${unanswered}
+          </b>
+        </p>`
+
+        :
+
+        ""
+      );
+
+
+    /* Show Result */
+
+    document
+      .getElementById("result")
+      .style.display = "block";
+
+
+    document
+      .getElementById("result")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+
+    document
+      .getElementById("submit")
+      .textContent =
+        "📊 تم تصحيح الاختبار";
+
+  });
+
+
+/* =========================
+   SECURITY / HTML ESCAPE
+========================= */
+
+function escapeHtml(str) {
+
+  return str.replace(
+    /[&<>"']/g,
+
+    m => ({
+
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+
+    }[m])
+
+  );
+
+}
+
+</script>
+
+</body>
+</html>
